@@ -6,7 +6,12 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\ControlsController;
+use App\Http\Controllers\PartnersController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\ServiesController;
+use App\Http\Controllers\ValiditiesController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,8 +28,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -35,4 +38,8 @@ Route::group(['middleware' => ['auth']], function()
     Route::resource('users', UserController::class);
     Route::resource('blogs', BlogController::class);
     Route::resource('permissions', PermissionController::class);
+    Route::resource('validities', ValiditiesController::class);
+    Route::resource('services', ServiesController::class);
+    Route::resource('partners', PartnersController::class);
+    Route::resource('controls', ControlsController::class);
 });
